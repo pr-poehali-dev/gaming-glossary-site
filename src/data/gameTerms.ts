@@ -1,9 +1,8 @@
-
-import { GameTerm } from './types';
-import { generalTerms } from './categories/general';
-import { rpgTerms } from './categories/rpg';
-import { competitiveTerms } from './categories/competitive';
-import { filterTerms, getAllCategories, sortTermsByAlphabet } from './utils';
+import { rpgTerms } from "./categories/rpg";
+import { generalTerms } from "./categories/general";
+import { competitiveTerms } from "./categories/competitive";
+import { filterTerms, getAllCategories, sortTermsByAlphabet } from "./utils";
+import { GameTerm } from "./types";
 
 /**
  * Все термины из словаря, объединенные в один массив
@@ -27,31 +26,28 @@ export const GameTermsAPI = {
    * Получить все термины
    */
   getAllTerms: () => gameTermsData,
-  
+
   /**
    * Получить все категории
    */
   getAllCategories: () => gameCategories,
-  
+
   /**
    * Поиск терминов по фильтру
    */
-  searchTerms: (filter: Parameters<typeof filterTerms>[1]) => 
+  searchTerms: (filter: Parameters<typeof filterTerms>[1]) =>
     filterTerms(gameTermsData, filter),
-  
+
   /**
    * Найти термин по ID
    */
-  getTermById: (id: number) => 
-    gameTermsData.find(term => term.id === id),
-  
+  getTermById: (id: number) => gameTermsData.find((term) => term.id === id),
+
   /**
    * Найти термины по категории
    */
-  getTermsByCategory: (category: string) => 
-    gameTermsData.filter(term => 
-      term.categories.includes(category as any)
-    )
+  getTermsByCategory: (category: string) =>
+    gameTermsData.filter((term) => term.categories.includes(category as any)),
 };
 
 export default GameTermsAPI;
