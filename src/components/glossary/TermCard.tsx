@@ -28,36 +28,40 @@ export const TermCard = ({ term }: TermCardProps) => {
       )}
     >
       <CardHeader className="pb-2">
-        <div className="flex justify-between items-start">
-          <CardTitle className="text-xl font-montserrat text-[#1A1F2C]">
+        <div className="flex justify-between items-start gap-2">
+          <CardTitle className="text-lg sm:text-xl font-montserrat text-[#1A1F2C] break-words">
             {term.term}
           </CardTitle>
           <Button
             variant="ghost"
             size="icon"
-            className="h-8 w-8 rounded-full hover:bg-[#F1F0FB]"
+            className="h-8 w-8 rounded-full hover:bg-[#F1F0FB] shrink-0"
             onClick={() => setExpanded(!expanded)}
           >
             <Icon name={expanded ? "ChevronUp" : "ChevronDown"} size={18} />
           </Button>
         </div>
         {term.altNames && term.altNames.length > 0 && (
-          <CardDescription className="text-gray-500 font-rubik text-sm">
+          <CardDescription className="text-gray-500 font-rubik text-xs sm:text-sm break-words">
             Также известен как: {term.altNames.join(", ")}
           </CardDescription>
         )}
       </CardHeader>
       <CardContent>
-        <p className="text-gray-700 font-rubik mb-3">{term.definition}</p>
+        <p className="text-gray-700 font-rubik text-sm sm:text-base mb-3">
+          {term.definition}
+        </p>
 
         {expanded && term.example && (
           <>
             <Separator className="my-3" />
             <div className="bg-gray-50 p-3 rounded-md my-3 border-l-4 border-[#8B5CF6]">
-              <p className="text-sm font-medium mb-1 text-gray-500 font-montserrat">
+              <p className="text-xs sm:text-sm font-medium mb-1 text-gray-500 font-montserrat">
                 Пример:
               </p>
-              <p className="text-gray-700 italic font-rubik">{term.example}</p>
+              <p className="text-gray-700 italic font-rubik text-sm">
+                {term.example}
+              </p>
             </div>
           </>
         )}
@@ -67,7 +71,7 @@ export const TermCard = ({ term }: TermCardProps) => {
             <Badge
               key={category}
               variant="secondary"
-              className="bg-[#F1F0FB] text-[#8B5CF6] hover:bg-[#E5DEFF] font-rubik"
+              className="bg-[#F1F0FB] text-[#8B5CF6] hover:bg-[#E5DEFF] font-rubik text-xs py-0.5"
             >
               {category}
             </Badge>
@@ -76,12 +80,20 @@ export const TermCard = ({ term }: TermCardProps) => {
 
         {expanded && (
           <div className="flex justify-end mt-3 gap-2">
-            <Button variant="ghost" size="sm" className="text-[#8B5CF6]">
-              <Icon name="Share2" size={16} className="mr-1" />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#8B5CF6] text-xs h-8"
+            >
+              <Icon name="Share2" size={14} className="mr-1" />
               <span className="font-rubik">Поделиться</span>
             </Button>
-            <Button variant="ghost" size="sm" className="text-[#8B5CF6]">
-              <Icon name="Copy" size={16} className="mr-1" />
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-[#8B5CF6] text-xs h-8"
+            >
+              <Icon name="Copy" size={14} className="mr-1" />
               <span className="font-rubik">Копировать</span>
             </Button>
           </div>
